@@ -19,8 +19,8 @@ var childProcess = require('child_process'),
 module.exports = function (prev, baton) {
     baton.take();
 
-    var cmd = 'rm -rf ' + _c.DEPLOY + ' && ' +
-              'mkdir ' + _c.DEPLOY;
+    var cmd = 'rm -rf "' + _c.DEPLOY + '" && ' +
+              'mkdir "' + _c.DEPLOY + '"';
 
     childProcess.exec(cmd, baton.pass);
 };

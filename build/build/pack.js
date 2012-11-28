@@ -79,7 +79,7 @@ module.exports = function () {
     src.js += "define.unordered = true;";
 
     src.js += compile(lib, function (file, path) {
-        return "define('" + path.replace(/^.*ripple/, "ripple").replace(/\.js$/, '') +
+        return "define('" + path.replace(/^.*ripple/, "ripple").replace(/\.js$/, '').replace(/\\/g, "/") +
                "', function (require, exports, module) {\n" + file + "});\n";
     });
 
