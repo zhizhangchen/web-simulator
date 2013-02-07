@@ -35,9 +35,12 @@ define(function main(require, exports, module) {
     function load() {
         brackets
             .getModule("LiveDevelopment/LiveDevelopment")
-            .setUrlWrapper(function (url) {
-                return brackets.getModule("utils/ExtensionUtils")
-                            .getFileUrl(module, "web/ripple.html?url=" + url);
+            .addUrlWrapper(function (url) {
+                if (window.device === "Simulator" && url.match(/html{0,1}/))
+                    return brackets.getModule("utils/ExtensionUtils")
+                                .getModuleUrl(module, "web/ripple.html?url=") + url;
+                else
+                    return url;
             });
     }
 
